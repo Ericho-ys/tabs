@@ -2,11 +2,12 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 import routes from './router/index'
-import {navMenu} from 'element-ui'
-import VueRouter from 'vue-router';
+import Element from 'element-ui'
+import store from './store'
 
-Vue.use(navMenu)
-Vue.use(VueRouter)
+Vue.use(Element, {
+  size: 'medium'
+})
 Vue.config.productionTip = false
 
 /* regist router */
@@ -30,5 +31,6 @@ const router = new VueRouter({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router
+  router,
+  store
 })

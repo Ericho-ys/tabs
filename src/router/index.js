@@ -1,6 +1,14 @@
-import App from '../App'
+import Vue from 'vue'
+import Router from 'vue-router'
 
-export default [{
-  path: '/',
-  component: App//顶层路由，对应App.vue
-}]
+Vue.use(Router)
+
+/* layout component */
+const layout = r => require.ensure([], () => r(require('@/views/layout/layout')), 'home')
+
+const asyncRouterMap = [
+  {
+    path: '/charts',
+    component: layout
+  }
+]
