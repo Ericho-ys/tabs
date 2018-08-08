@@ -4,11 +4,19 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* layout component */
-const layout = r => require.ensure([], () => r(require('@/views/layout/layout')), 'home')
-
+const layout = r => require.ensure([], () => r(require('@/views/layout/layout')), 'layout')
+const charts = r => require.ensure([], () => r(require('@/views/charts/line')), 'charts')
 const asyncRouterMap = [
   {
     path: '/charts',
-    component: layout
+    redirect: '/charts/index',
+    component: layout,
+    children: [
+      {
+        path: 'index',
+        component : charts,
+        name: 'charts'
+      }
+    ]
   }
 ]
