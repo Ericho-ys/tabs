@@ -1,9 +1,14 @@
 import Cookies from 'js-cookie'
-import {TOGGLE_SIDEBAR, CLOSE_SIDEBAR, TOGGLE_DEVICE, SET_LANGUAGE} from '../mutation-types'
+import {
+  TOGGLE_SIDEBAR,
+  CLOSE_SIDEBAR,
+  TOGGLE_DEVICE,
+  SET_LANGUAGE
+} from '../mutation-types'
 const app = {
   state: {
     sliderBar: {
-      opened : !+ Cookies.get('sliderBarStatus'),
+      opened: !+Cookies.get('sliderBarStatus'),
       withoutAnimation: false
     },
     device: 'destop',
@@ -11,9 +16,9 @@ const app = {
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
-      if(state.sliderBar.opened){
+      if (state.sliderBar.opened) {
         Cookies.set('sliderBarStatus', 1)
-      }else{
+      } else {
         Cookies.set('sliderBarStatus', 0)
       }
       state.sliderBar.opened = !state.sliderBar.opened
@@ -33,18 +38,28 @@ const app = {
     }
   },
   actions: {
-    toggleSideBar({commit}) {
+    toggleSideBar({
+      commit
+    }) {
       commit(TOGGLE_SIDEBAR)
     },
-    closeSlideBar({commit}, {withoutAnimation}){
+    closeSlideBar({
+      commit
+    }, {
+      withoutAnimation
+    }) {
       commit(CLOSE_SIDEBAR, withoutAnimation)
     },
-    toggleDevice({commit}, device){
+    toggleDevice({
+      commit
+    }, device) {
       commit(TOGGLE_DEVICE, device)
     },
-    setLanguage({commit}, language){
+    setLanguage({
+      commit
+    }, language) {
       commit(SET_LANGUAGE, language)
     }
   }
 }
-export  default app
+export default app

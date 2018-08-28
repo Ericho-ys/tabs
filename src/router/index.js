@@ -6,7 +6,8 @@ Vue.use(Router)
 /* layout component */
 const layout = r => require.ensure([], () => r(require('@/views/layout/layout')), 'layout')
 const charts = r => require.ensure([], () => r(require('@/views/charts/line')), 'charts')
-const asyncRouterMap = [
+const login  = r => require.ensure([], () => r(require('@/views/login/index')), 'login')
+export const asyncRouterMap = [
   {
     path: '/charts',
     redirect: '/charts/index',
@@ -20,8 +21,16 @@ const asyncRouterMap = [
     ]
   }
 ]
+export const constantRouterMap = [
+  { path: '/login', component: login, hidden: true},
+  {
+    path: '/',
+    component: layout
+  }
+]
+
 export default new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: asyncRouterMap
+  routes: constantRouterMap
 })
