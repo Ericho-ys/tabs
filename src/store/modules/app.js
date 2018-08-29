@@ -7,8 +7,8 @@ import {
 } from '../mutation-types'
 const app = {
   state: {
-    sliderBar: {
-      opened: !+Cookies.get('sliderBarStatus'),
+    sidebar: {
+      opened: !+Cookies.get('sidebarStatus'),
       withoutAnimation: false
     },
     device: 'destop',
@@ -17,17 +17,17 @@ const app = {
   mutations: {
     TOGGLE_SIDEBAR: state => {
       if (state.sliderBar.opened) {
-        Cookies.set('sliderBarStatus', 1)
+        Cookies.set('sidebarStatus', 1)
       } else {
-        Cookies.set('sliderBarStatus', 0)
+        Cookies.set('sidebarStatus', 0)
       }
-      state.sliderBar.opened = !state.sliderBar.opened
-      state.sliderBar.withoutAnimation = false
+      state.sidebar.opened = !state.sliderBar.opened
+      state.sidebar.withoutAnimation = false
     },
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
-      Cookies.set('sliderBarStatus', 1)
-      state.sliderBar.opened = false
-      state.sliderBar.withoutAnimation = withoutAnimation
+      Cookies.set('sidebarStatus', 1)
+      state.sidebar.opened = false
+      state.sidebar.withoutAnimation = withoutAnimation
     },
     TOGGLE_DEVICE: (state, device) => {
       state.device = device
@@ -43,7 +43,7 @@ const app = {
     }) {
       commit(TOGGLE_SIDEBAR)
     },
-    closeSlideBar({
+    closeSideBar({
       commit
     }, {
       withoutAnimation

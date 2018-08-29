@@ -16,7 +16,8 @@ export const asyncRouterMap = [
       {
         path: 'index',
         component : charts,
-        name: 'charts'
+        name: 'charts',
+        meta: { title: 'charts'}
       }
     ]
   }
@@ -24,7 +25,7 @@ export const asyncRouterMap = [
 export const constantRouterMap = [
   { path: '/login', component: login, hidden: true},
   {
-    path: '/',
+    path: '',
     component: layout
   }
 ]
