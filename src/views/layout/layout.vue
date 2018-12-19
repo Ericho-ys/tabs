@@ -39,7 +39,7 @@
       }
     },
     methods: {
-      handleClickOutside() {
+      handleClickOutSide() {
         this.$store.dispatch('closeSideBar', { withoutAnimation: false })
       }
     }

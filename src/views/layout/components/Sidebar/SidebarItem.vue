@@ -6,18 +6,19 @@
       <el-menu-item 
       :index="resolvePath(onlyOneChild.path)"
       :class="{'submenu-title-noDropdown': !isNest}" >
-        <span v-if="onlyOneChild.meta && onlyOneChild.meta.title" slot="title">{{onlyOneChild.meta.title}}</span>
+        <svg-icon v-if="onlyOneChild.meta&&onlyOneChild.meta.icon" :icon-class="onlyOneChild.meta.icon"></svg-icon>
+        <span v-if="onlyOneChild.meta && onlyOneChild.meta.title" slot="title">{{generateTitle(onlyOneChild.meta.title)}}</span>
       </el-menu-item>
     </router-link>
     <el-submenu v-else :index="item.name || item.path">
       <template slot="title">
-        <span v-if="item.mate && item.meta.title" slot="title">{{item.meta.title}}</span>
+        <span v-if="item.mate && item.meta.title" slot="title">{{generateTitle(item.meta.title)}}</span>
       </template>
       <template v-for="child in item.children" v-if="child.hidden">
         <sidebar-item :is-nest="true" :key="child.name" v-if="child.children&&child.children.length>0" :item="child" :base-path="resolvePath(child.path)"></sidebar-item>
         <router-link v-else :key="child.name" :to="resolvePath(child.path)">
           <el-menu-item :index="resolvePath(child.path)">
-            <span v-if="child.meta && child.meta.title" slot="title">{{child.meta.title}}</span>
+            <span v-if="child.meta && child.meta.title" slot="title">{{generateTitle(child.meta.title)}}</span>
           </el-menu-item>
         </router-link>
       </template>
@@ -27,6 +28,7 @@
 
 <script>
   import path from 'path'
+  import { generateTitle } from '@/utils/i18n'
   export default{
     name: 'SidebarItem',
     props: {
@@ -65,7 +67,8 @@
       },
       resolvePath(...paths){
         return path.resolve(this.basePath, ...paths)
-      }
+      },
+      generateTitle
     }
   }
 </script>
